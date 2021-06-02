@@ -11,3 +11,13 @@
 - AWS IoT Core / message broker 
 - AWS Lambda / Data Processing Logic 
 - AWS DynamoDB / IoT Sensor Data Storage
+
+## Structure
+- /secrets : Secrets for device identification. Certificate / public key / private key 
+- /aws : AWS Lambda handler 
+- /arduino : device code
+
+## Flow
+1. AWS IoT 에 디바이스 생성 ( Register a new thing, Create a single thing. )
+2. 인증서 프로비저닝
+3. 디바이스 활성화 후 Attach a policy. -> 4가지 정책 활성화. iot:Connect, iot:Subscribe, iot:Receive, iot:Publish
