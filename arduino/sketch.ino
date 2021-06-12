@@ -29,7 +29,7 @@ void connectAWS()
   net.setCertificate(AWS_CERT_CRT);
   net.setPrivateKey(AWS_CERT_PRIVATE);
 
-  // Connect to the MQTT broker on the AWS endpoint we defined earlier
+  // Connect to the MQTT broker
   client.begin(AWS_IOT_ENDPOINT, 8883, net);
 
   // Create a message handler
@@ -47,9 +47,6 @@ void connectAWS()
     return;
   }
 
-  // Subscribe to a topic
-  client.subscribe(AWS_IOT_SUBSCRIBE_TOPIC);
-
   Serial.println("AWS IoT Connected!");
 }
 
@@ -57,7 +54,7 @@ void publishMessage()
 {
   StaticJsonDocument<200> doc;
   doc["time"] = millis();
-  doc["sensor_a0"] = analogRead(0);
+  doc["sensor"] = analogRead(0);
   char jsonBuffer[512];
   serializeJson(doc, jsonBuffer); // print to client
 
